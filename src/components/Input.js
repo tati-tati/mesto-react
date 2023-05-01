@@ -7,6 +7,8 @@ function Input(props) {
         type={props.type}
         name={props.name}
         placeholder={props.placeholder}
+        minLength={props.minLength}
+        maxLength={props.maxLength}
         required
       />
 

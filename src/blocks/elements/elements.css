@@ -5,5 +5,7 @@
   grid-template-columns: repeat(auto-fit, 282px);
   justify-content: flex-start;
   position: relative;
+  max-width: 880px;
+  margin: 0 auto;
 }
 

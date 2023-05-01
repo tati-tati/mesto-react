@@ -6,10 +6,25 @@ function PopupWithForm(props) {
       <div className="popup__container">
         <button
           className="popup__close-button button"
-          aria-label="Закрыть редактор профиля"
-          onClick = {props.onClose}
+          aria-label="Закрыть"
+          onClick={props.onClose}
         ></button>
-        {props.children}
+        <form
+          className={`popup__form popup__${props.form}`}
+          action="#"
+          name={props.form}
+        >
+          <h2 className={`popup__title ${props.titleModificator}`}>
+            {props.title}
+          </h2>
+          {props.children}
+          <button
+            className={`popup__save-button button ${props.buttonModificator}`}
+            type="submit"
+          >
+            {props.buttonText}
+          </button>
+        </form>
       </div>
     </div>
   );

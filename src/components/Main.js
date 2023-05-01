@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {api} from '../utils/Api';
+import { api } from "../utils/Api";
 import Card from "./Card";
 
 function Main(props) {
@@ -10,11 +10,15 @@ function Main(props) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api.getInitialCards()
-    .then((res) => {
-      // console.log(res);
-      setCards(res)
-    })
+    api
+      .getInitialCards()
+      .then((res) => {
+        // console.log(res);
+        setCards(res);
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      })
   }, []);
 
   useEffect(() => {
@@ -24,6 +28,9 @@ function Main(props) {
       setUserName(res.name);
       setUserDescription(res.about);
       setUserAvatar(res.avatar);
+    })
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
     })
   }, []);
 
@@ -54,7 +61,13 @@ function Main(props) {
 
       <section className="elements" aria-label="Галерея">
         {cards.map((card) => {
-          return (<Card key = {card._id} card={card} setSelectedCard={props.setSelectedCard} />)
+          return (
+            <Card
+              key={card._id}
+              card={card}
+              setSelectedCard={props.setSelectedCard}
+            />
+          );
         })}
       </section>
     </main>

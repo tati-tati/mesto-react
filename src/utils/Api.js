@@ -67,14 +67,6 @@ class Api {
     .then(this._handleResponse);
   }
 
-  addLike(id) {//Вместо cardId в URL нужно подставить свойство _id соответствующей карточки.
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: 'PUT',
-      headers: this._headers,
-    })
-    .then(this._handleResponse);
-  }
-
   getCurrentUser() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
@@ -83,12 +75,20 @@ class Api {
     .then(this._handleResponse);
   }
 
-  deleteLike(id) {//Вместо cardId в URL нужно подставить свойство _id соответствующей карточки.
+  changeLikeCardStatus(id, status) {
+   if(status) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+    .then(this._handleResponse);
+   } else {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: this._headers,
     })
     .then(this._handleResponse);
+   }
   }
 
   deleteCard(cardId) {

@@ -1,38 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { api } from "../utils/Api";
 import Card from "./Card";
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+
 
 function Main(props) {
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
+  
 
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    api
-      .getInitialCards()
-      .then((res) => {
-        // console.log(res);
-        setCards(res);
-      })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      })
-  }, []);
-
-  useEffect(() => {
-    api.getInfoUser()
-    .then((res) => {
-      // console.log(res);
-      setUserName(res.name);
-      setUserDescription(res.about);
-      setUserAvatar(res.avatar);
-    })
-    .catch((err) => {
-      console.log(err); // выведем ошибку в консоль
-    })
-  }, []);
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="content">
@@ -41,10 +16,10 @@ function Main(props) {
           className="profile__avatar-button button"
           onClick={props.onEditAvatar}
         >
-          <img className="profile__avatar" src={userAvatar} alt="аватар" />
+          <img className="profile__avatar" src={currentUser.avatar} alt="аватар" />
         </button>
-        <h1 className="profile__name">{userName}</h1>
-        <p className="profile__description">{userDescription}</p>
+        <h1 className="profile__name">{currentUser.name}</h1>
+        <p className="profile__description">{currentUser.about}</p>
         <button
           className="profile__edit-button button"
           type="button"
@@ -60,12 +35,14 @@ function Main(props) {
       </section>
 
       <section className="elements" aria-label="Галерея">
-        {cards.map((card) => {
+        {props.cards.map((card) => {
           return (
             <Card
               key={card._id}
               card={card}
               setSelectedCard={props.setSelectedCard}
+              onCardLike ={ props.onCardLike }
+              onCardDelete = {props.onCardDelete }
             />
           );
         })}

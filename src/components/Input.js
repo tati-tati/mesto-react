@@ -2,6 +2,7 @@ function Input(props) {
   return (
     <>
       <input
+        value={props.inputValue}
         className={`popup__input ${props.class}`}
         id={props.id}
         type={props.type}
@@ -9,6 +10,7 @@ function Input(props) {
         placeholder={props.placeholder}
         minLength={props.minLength}
         maxLength={props.maxLength}
+        onChange={props.getInputValue}
         required
       />
 

@@ -1,12 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { api } from "../utils/Api";
 import Card from "./Card";
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
-
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
-  
-
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -16,7 +12,11 @@ function Main(props) {
           className="profile__avatar-button button"
           onClick={props.onEditAvatar}
         >
-          <img className="profile__avatar" src={currentUser.avatar} alt="аватар" />
+          <img
+            className="profile__avatar"
+            src={currentUser.avatar}
+            alt="аватар"
+          />
         </button>
         <h1 className="profile__name">{currentUser.name}</h1>
         <p className="profile__description">{currentUser.about}</p>
@@ -41,8 +41,8 @@ function Main(props) {
               key={card._id}
               card={card}
               setSelectedCard={props.setSelectedCard}
-              onCardLike ={ props.onCardLike }
-              onCardDelete = {props.onCardDelete }
+              onCardLike={props.onCardLike}
+              onCardDelete={props.onCardDelete}
             />
           );
         })}

@@ -31,10 +31,11 @@ function AddPlacePopup(props) {
       onClose={props.onClose}
       form={"form_post"}
       title={"Новое место"}
-      onSubmit={handleSubmit}
+      onSubmit={(evt) => handleSubmit(evt)}
       buttonText={"Создать"}
     >
       <Input
+        inputValue ={name}
         class={"popup__input_edit_title"}
         id={"input-title"}
         type={"text"}
@@ -47,6 +48,7 @@ function AddPlacePopup(props) {
       />
 
       <Input
+        inputValue ={link}
         class={"popup__input_edit_picture-source"}
         id={"input-url"}
         type={"url"}

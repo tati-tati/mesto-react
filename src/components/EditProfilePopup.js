@@ -12,11 +12,11 @@ function EditProfilePopup(props) {
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, props.isOpen]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    props.onUpdateUser({ name, about: description });
+    props.onUpdateUser({ name, about: description });    
   }
 
   function handleChangeName(evt) {
@@ -38,7 +38,7 @@ function EditProfilePopup(props) {
       buttonText={"Сохранить"}
     >
       <Input
-        inputValue={name || ""}
+        inputValue ={name || ""}
         class={"popup__input_edit_name"}
         id={"input-name"}
         type={"text"}
@@ -51,7 +51,7 @@ function EditProfilePopup(props) {
       />
 
       <Input
-        inputValue={description || ""}
+        inputValue ={description || ""}
         class={"popup__input_edit_job"}
         id={"input-job"}
         type={"text"}

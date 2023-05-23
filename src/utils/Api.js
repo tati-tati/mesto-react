@@ -44,7 +44,7 @@ class Api {
       headers: this._headers,
 
       body: JSON.stringify({
-        avatar: item,
+        avatar: item.avatar,
       }),
     }).then(this._handleResponse);
   }

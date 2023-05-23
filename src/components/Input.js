@@ -11,6 +11,7 @@ function Input(props) {
         minLength={props.minLength}
         maxLength={props.maxLength}
         onChange={props.getInputValue}
+        ref = {props.uRef}
         required
       />
 

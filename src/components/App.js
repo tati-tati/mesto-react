@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../utils/Api";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
@@ -50,22 +50,22 @@ function App() {
       .then((res) => {
         setCurrentUser(res);
       })
+      .then(() => closeAllPopups())
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => closeAllPopups());
   }
 
   function handleUpdateAvatar(avatar) {
     api
-      .setUserAvatar(avatar.current)
+      .setUserAvatar(avatar)
       .then((res) => {
         setCurrentUser(res);
       })
+      .then(() => closeAllPopups())
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => closeAllPopups());
   }
 
   function handleAddPlace(card) {
@@ -74,10 +74,10 @@ function App() {
       .then((newCard) => {
         setCards([newCard, ...cards]);
       })
+      .then(() => closeAllPopups())
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => closeAllPopups());
   }
 
   function handleCardLike(card) {
